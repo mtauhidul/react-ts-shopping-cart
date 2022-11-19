@@ -57,26 +57,39 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
         </Box>
         {list('right')}
         <Box>
-          <Typography
-            variant='h6'
-            color='text.secondary'
-            sx={{
-              textAlign: 'right',
-              pr: 1,
-            }}>
-            Total:{' '}
-            {formatCurrency(
-              cartItems.reduce((acc, item) => {
-                const storeItem = storeItems.find(
-                  (storeItem) => storeItem.id === item.id
-                );
-                if (!storeItem) {
-                  return acc;
-                }
-                return acc + storeItem.price * item.quantity;
-              }, 0)
-            )}
-          </Typography>
+          {cartItems.length === 0 && (
+            <Typography
+              variant='body1'
+              color='text.secondary'
+              sx={{
+                p: 2,
+                textAlign: 'center',
+              }}>
+              Your cart is empty
+            </Typography>
+          )}
+          {cartItems.length > 0 && (
+            <Typography
+              variant='h6'
+              color='text.secondary'
+              sx={{
+                textAlign: 'right',
+                pr: 1,
+              }}>
+              Total:{' '}
+              {formatCurrency(
+                cartItems.reduce((acc, item) => {
+                  const storeItem = storeItems.find(
+                    (storeItem) => storeItem.id === item.id
+                  );
+                  if (!storeItem) {
+                    return acc;
+                  }
+                  return acc + storeItem.price * item.quantity;
+                }, 0)
+              )}
+            </Typography>
+          )}
         </Box>
       </Drawer>
     </Box>

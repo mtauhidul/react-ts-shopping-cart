@@ -77,7 +77,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
                 backgroundColor: '#f5f5f5',
               },
             }}
-            onClick={() => removeFromCart(id)}>
+            onClick={() => removeFromCart(item.id)}>
             <ClearIcon />
           </IconButton>
         </Grid>
